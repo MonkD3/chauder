@@ -9,7 +9,6 @@ extern "C" {
 #include <stdbool.h>
 
 // ====================== Errors =================================
-typedef enum error_enum error_et;
 enum error_enum {
     CHAUDER_SUCCESS = 0,
     SHADER_UPDATE,
@@ -19,6 +18,7 @@ enum error_enum {
     PROGRAM_LINK_ERROR,
     PROGRAM_CREATE_ERROR,
 };
+typedef enum error_enum error_et;
 
 // ===================== Basic functions =========================
 // Setup and finalize
