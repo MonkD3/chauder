@@ -1,6 +1,10 @@
 #ifndef __CHAUDER_INTERFACE
 #define __CHAUDER_INTERFACE
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <glad/gl.h>
 #include <stdbool.h>
 
@@ -60,5 +64,9 @@ GLuint     program_get_id(program_st const* prg);
 
 error_et program_link(program_st* prg);
 error_et program_update(program_st* prg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // __CHAUDER_INTERFACE
