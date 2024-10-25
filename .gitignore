@@ -1,0 +1,5 @@
+# Ignore build files 
+build/*
+
+# Except the .gitkeep
+!build/.gitkeep
