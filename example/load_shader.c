@@ -40,7 +40,7 @@ int main(int argc, char** argv){
     // Allocate a shader and set its attributes
     shader_st* vshd = shader_new();
     shader_set_type(vshd, GL_VERTEX_SHADER);
-    shader_set_fname(vshd, "../assets/vertex/simple_vertex_shader.vert");
+    shader_set_fname(vshd, "../assets/vertex/2d_position_shader.vert");
 
     // Compile the shader
     error_et err = shader_compile(vshd);
@@ -49,7 +49,7 @@ int main(int argc, char** argv){
     // Do the same for the fragment shader
     shader_st* fshd = shader_new();
     shader_set_type(fshd, GL_FRAGMENT_SHADER);
-    shader_set_fname(fshd, "../assets/fragment/simple_fragment_shader.frag");
+    shader_set_fname(fshd, "../assets/fragment/constant_color.frag");
     err = shader_compile(fshd);
     if (err != CHAUDER_SUCCESS) fprintf(stderr, "Failed to compile the fragment shader\n");
 

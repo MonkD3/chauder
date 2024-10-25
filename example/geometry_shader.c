@@ -10,6 +10,7 @@ void framebufferSizeCallback(__attribute__((unused)) GLFWwindow* window, int wid
 int main(int argc, char** argv){
     chauder_init(argc, argv);
 
+
     // ============================ OpenGL Context ============================
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -39,27 +40,30 @@ int main(int argc, char** argv){
     // Allocate a shader and set its attributes
     shader_st* vshd = shader_new();
     shader_set_type(vshd, GL_VERTEX_SHADER);
-    shader_set_fname(vshd, "../assets/vertex/sphere_from_point.vert");
+    shader_set_fname(vshd, "../assets/vertex/2d_position_shader.vert");
 
     // Compile the shader
     error_et err = shader_compile(vshd);
     if (err != CHAUDER_SUCCESS) fprintf(stderr, "Failed to compile the vertex shader\n");
 
+    // Do the same for the geometry shader
+    shader_st* gshd = shader_new();
+    shader_set_type(gshd, GL_GEOMETRY_SHADER);
+    shader_set_fname(gshd, "../assets/geometry/2d_point_to_square_triangle_strip.geom");
+    err = shader_compile(gshd);
+    if (err != CHAUDER_SUCCESS) fprintf(stderr, "Failed to compile the geometry shader\n");
+
     // Do the same for the fragment shader
     shader_st* fshd = shader_new();
     shader_set_type(fshd, GL_FRAGMENT_SHADER);
-    shader_set_fname(fshd, "../assets/fragment/sphere.frag");
+    shader_set_fname(fshd, "../assets/fragment/2d_circle.frag");
     err = shader_compile(fshd);
     if (err != CHAUDER_SUCCESS) fprintf(stderr, "Failed to compile the fragment shader\n");
 
-    // Do the same for the fragment shader
-    shader_st* gshd = shader_new();
-    shader_set_type(gshd, GL_GEOMETRY_SHADER);
-    shader_set_fname(gshd, "../assets/geometry/point_to_tri.geom");
-    err = shader_compile(gshd);
-    if (err != CHAUDER_SUCCESS) fprintf(stderr, "Failed to compile the fragment shader\n");
-
+    // Create a program
     program_st* prg = program_new();
+
+    // You can add as many shaders as you want
     program_add_shader(prg, vshd);
     program_add_shader(prg, fshd);
     program_add_shader(prg, gshd);
